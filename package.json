@@ -1,0 +1,72 @@
+{
+  "name": "unplugin-compress",
+  "version": "0.0.1",
+  "description": "A common compress plugin for Vite/Webpack/Rollup(etc...) powered by Unplugin",
+  "keywords": [
+    "unplugin",
+    "vite",
+    "webpack",
+    "rollup"
+  ],
+  "homepage": "https://github.com/rogerleung0411/unplugin-compress#readme",
+  "bugs": {
+    "url": "https://github.com/rogerleung0411/unplugin-compress/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rogerleung0411/unplugin-compress.git"
+  },
+  "license": "MIT",
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs"
+    },
+    "./vite": {
+      "require": "./dist/vite.js",
+      "import": "./dist/vite.mjs"
+    },
+    "./webpack": {
+      "require": "./dist/webpack.js",
+      "import": "./dist/webpack.mjs"
+    },
+    "./rollup": {
+      "require": "./dist/rollup.js",
+      "import": "./dist/rollup.mjs"
+    },
+    "./types": {
+      "require": "./dist/types.js",
+      "import": "./dist/types.mjs"
+    },
+    "./*": "./*"
+  },
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "*.d.ts"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch src",
+    "release": "bumpp --commit --push --tag && pnpm publish",
+    "start": "esno src/index.ts"
+  },
+  "dependencies": {
+    "unplugin": "^0.2.18"
+  },
+  "devDependencies": {
+    "@types/node": "^16.11.6",
+    "bumpp": "^7.1.1",
+    "esno": "^0.10.1",
+    "fast-glob": "^3.2.7",
+    "nodemon": "^2.0.14",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.58.3",
+    "tsup": "^5.5.0",
+    "typescript": "^4.4.4",
+    "vite": "^2.6.12",
+    "webpack": "^5.60.0"
+  }
+}
