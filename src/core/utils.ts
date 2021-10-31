@@ -1,12 +1,11 @@
 import fs from 'fs';
 import path from 'path';
-import { isFunction, isRegExp } from 'lodash';
 
-import type { FileFilter } from './types';
+import type { FileFilterFn } from './types';
 
-export const sizeFormatter = (buf: Buffer) => (buf.byteLength / 1024).toFixed(2) + 'kb';
+export const getBufferSizeOfKB = (buf: Buffer) => (buf.byteLength / 1024).toFixed(2) + 'kb';
 
-export const getFilePaths = (root: string, filter: FileFilter = () => false) => {
+export const collectFilePaths = (root: string, filter: FileFilterFn = () => false) => {
   const paths: string[] = [];
 
   try {
@@ -16,14 +15,11 @@ export const getFilePaths = (root: string, filter: FileFilter = () => false) => 
         const files = fs.readdirSync(root);
         // dfs traversal here.
         files.forEach(function (file) {
-          const ps = getFilePaths(path.join(root, '/', file), filter);
+          const ps = collectFilePaths(path.join(root, '/', file), filter);
           paths.push(...ps);
         });
       } else {
-        if (
-          isFunction(filter) && filter(root) ||
-          isRegExp(filter) && filter.test(root)
-        ) {
+        if (filter(root)) {
           paths.push(root);
         }
       }

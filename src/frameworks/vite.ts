@@ -1,7 +1,7 @@
 import path from 'path';
 import { ResolvedConfig } from 'vite';
 import {
-  getFilePaths,
+  collectFilePaths,
   compressParallel,
 } from '../core';
 
@@ -22,7 +22,7 @@ export const viteConfigFactory = (options: ResolvedUnpluginCompressOptions) => {
         : path.join(config.root, config.build.outDir)
     },
     async closeBundle() {
-      const paths = getFilePaths(outputPath, options.filter);
+      const paths = collectFilePaths(outputPath, options.filter);
       if (!paths.length) return;
       await compressParallel(paths, options, config.logger);
     }

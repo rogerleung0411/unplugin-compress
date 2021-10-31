@@ -4,11 +4,13 @@ import {
   PLUGIN_NAME,
   resolveOptions,
 } from './core';
-import { viteConfigFactory } from './factory/vite';
+import { setup as setupFrameworks } from './frameworks';
 
 import type {
   UnpluginCompressOptions
 } from './core';
+
+export * as core from './core';
 
 export default createUnplugin<UnpluginCompressOptions>(rawOptions => {
   const emptyPlugin = { name: PLUGIN_NAME };
@@ -21,6 +23,6 @@ export default createUnplugin<UnpluginCompressOptions>(rawOptions => {
   return {
     ...emptyPlugin,
     enforce: 'post',
-    vite: viteConfigFactory(options),
+    ...setupFrameworks(options),
   };
 });

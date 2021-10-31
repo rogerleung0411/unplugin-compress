@@ -15,7 +15,9 @@ export type Algorithm = keyof typeof DEFAULT_COMPRESS_OPTION_MAP;
 
 export type CompressionOptions = Partial<ZlibOptions> | Partial<BrotliOptions>;
 
-export type FileFilter = RegExp | ((file: string) => boolean);
+export type FileFilterFn = (file: string) => boolean;
+
+export type FileFilter = RegExp | FileFilterFn;
 
 export interface UnpluginCompressOptions {
   /**
@@ -61,10 +63,16 @@ export type AlgorithmRunnerFn =
   | typeof brotliCompress;
 
 export type ResolvedUnpluginCompressOptions = 
-  Required<Omit<UnpluginCompressOptions, 'algorithm'>> &
+  Required<Omit<UnpluginCompressOptions, 'algorithm' | 'filter'>> &
   {
     algorithmName: Algorithm,
-    algorithm: AlgorithmRunnerFn
+    algorithm: AlgorithmRunnerFn,
+    filter: FileFilterFn;
   };
 
 export type OptionsResolver = (options?: UnpluginCompressOptions) => ResolvedUnpluginCompressOptions | null;
+
+export interface FileInfo {
+  filePath: string;
+  content?: Buffer;
+}
