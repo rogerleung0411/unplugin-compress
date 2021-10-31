@@ -1,6 +1,6 @@
 {
   "name": "unplugin-compress",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A common compress plugin for Vite/Webpack/Rollup(etc...) powered by Unplugin",
   "keywords": [
     "unplugin",
