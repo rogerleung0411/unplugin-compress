@@ -8,6 +8,7 @@
     "webpack",
     "rollup"
   ],
+  "author": "rogerleung0411<zerotoherorg@gmail.com>",
   "homepage": "https://github.com/rogerleung0411/unplugin-compress#readme",
   "bugs": {
     "url": "https://github.com/rogerleung0411/unplugin-compress/issues"
@@ -54,9 +55,13 @@
     "start": "esno src/index.ts"
   },
   "dependencies": {
+    "fs-extra": "^10.0.0",
+    "lodash": "^4.17.21",
     "unplugin": "^0.2.18"
   },
   "devDependencies": {
+    "@types/fs-extra": "^9.0.13",
+    "@types/lodash": "^4.14.176",
     "@types/node": "^16.11.6",
     "bumpp": "^7.1.1",
     "esno": "^0.10.1",
@@ -66,7 +71,7 @@
     "rollup": "^2.58.3",
     "tsup": "^5.5.0",
     "typescript": "^4.4.4",
-    "vite": "^2.6.12",
+    "vite": "^2.6.13",
     "webpack": "^5.60.0"
   }
 }

@@ -1,3 +1,3 @@
-import unplugin from '.'
+import UnpluginCompress from '.';
 
-export default unplugin.vite
+export default UnpluginCompress.vite;
