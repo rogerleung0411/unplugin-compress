@@ -1,5 +1,6 @@
 import zlib from 'zlib';
 import chalk from 'chalk';
+import { isRegExp } from 'lodash';
 
 import {
   PLUGIN_NAME,
@@ -36,7 +37,10 @@ export const resolveOptions: OptionsResolver = (options) => {
     verbose,
     extname,
     threshold,
-    filter,
+    // override filter to function and no need to call isRegExp internally.
+    filter: isRegExp(filter)
+      ? (file: string) => filter.test(file)
+      : filter,
     compressionOptions: {
       ...DEFAULT_COMPRESS_OPTION_MAP[algorithm],
       ...(compressionOptions || {}),

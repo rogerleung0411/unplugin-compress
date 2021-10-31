@@ -6,6 +6,7 @@ import { DEFAULT_LOGGER } from './constants';
 import { sizeFormatter, runParallel } from './utils';
 
 import type {
+  FileInfo,
   ResolvedUnpluginCompressOptions,
 } from './types';
 import { PLUGIN_NAME } from '.';
@@ -30,15 +31,15 @@ export const compress = async (
 }
 
 export const createCompressJob = async (
-  filePath: string,
+  { filePath, content }: FileInfo,
   options: ResolvedUnpluginCompressOptions,
   logger = DEFAULT_LOGGER,
 ) => {
   const { extname, verbose, algorithmName } = options;
   const compressedName = path.basename(filePath) + extname;
-
+  console.log({ filePath, content });
   try {
-    const sourceBuf = await fs.readFile(filePath);
+    const sourceBuf = content || await fs.readFile(filePath);
     const outputBuf = await compress(sourceBuf, options);
   
     if (verbose) {
@@ -67,6 +68,6 @@ export const compressParallel = (
   return runParallel(
     os.cpus.length,
     paths, 
-    (path) => createCompressJob(path, options, logger)
+    (filePath) => createCompressJob({ filePath }, options, logger)
   );
 };
