@@ -3,9 +3,9 @@ import path from 'path';
 
 import type { FileFilterFn } from './types';
 
-export const sizeFormatter = (buf: Buffer) => (buf.byteLength / 1024).toFixed(2) + 'kb';
+export const getBufferSizeOfKB = (buf: Buffer) => (buf.byteLength / 1024).toFixed(2) + 'kb';
 
-export const getFilePaths = (root: string, filter: FileFilterFn = () => false) => {
+export const collectFilePaths = (root: string, filter: FileFilterFn = () => false) => {
   const paths: string[] = [];
 
   try {
@@ -15,7 +15,7 @@ export const getFilePaths = (root: string, filter: FileFilterFn = () => false) =
         const files = fs.readdirSync(root);
         // dfs traversal here.
         files.forEach(function (file) {
-          const ps = getFilePaths(path.join(root, '/', file), filter);
+          const ps = collectFilePaths(path.join(root, '/', file), filter);
           paths.push(...ps);
         });
       } else {

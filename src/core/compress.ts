@@ -3,7 +3,7 @@ import os from 'os';
 import chalk from 'chalk';
 import fs from 'fs-extra';
 import { DEFAULT_LOGGER } from './constants';
-import { sizeFormatter, runParallel } from './utils';
+import { getBufferSizeOfKB, runParallel } from './utils';
 
 import type {
   FileInfo,
@@ -37,13 +37,13 @@ export const createCompressJob = async (
 ) => {
   const { extname, verbose, algorithmName } = options;
   const compressedName = path.basename(filePath) + extname;
-  console.log({ filePath, content });
+
   try {
     const sourceBuf = content || await fs.readFile(filePath);
     const outputBuf = await compress(sourceBuf, options);
   
     if (verbose) {
-      const outputSize = sizeFormatter(outputBuf);
+      const outputSize = getBufferSizeOfKB(outputBuf);
       logger.info(
         `[${PLUGIN_NAME}]: ` + 
         `${chalk.cyanBright(compressedName)} generated. ` +
