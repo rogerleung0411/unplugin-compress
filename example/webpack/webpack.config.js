@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const Compress = require('../../dist/webpack').default;
 
 const distPath = path.resolve(__dirname, './dist');
 
@@ -15,10 +16,10 @@ module.exports = ({
     path: distPath,
   },
   plugins: [
-    require('../../dist').default.webpack({
+    Compress({
       filter: /\.js$/,
     }),
-    require('../../dist').default.webpack({
+    Compress({
       filter: /main\.js$/,
       algorithm: 'brotliCompress',
       extname: '.br',
