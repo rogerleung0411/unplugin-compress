@@ -10,7 +10,7 @@ A universal compress plugin for Webpack / Vite / Rollup, powered by [Unplugin](h
 ```js
 // webpack.config.js
 
-const compress = require('../../dist/webpack').default;
+const Compress = require('../../dist/webpack');
 
 module.exports = ({
   mode: 'production',
@@ -19,10 +19,10 @@ module.exports = ({
     path: distPath,
   },
   plugins: [
-    compress({
+    Compress({
       filter: /\.js$/,
     }),
-    compress({
+    Compress({
       filter: /main\.js$/,
       algorithm: 'brotliCompress',
       extname: '.br',

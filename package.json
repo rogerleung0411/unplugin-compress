@@ -49,7 +49,7 @@
     "*.d.ts"
   ],
   "scripts": {
-    "build": "tsup",
+    "build": "tsup && esno scripts/postbuild.ts",
     "dev": "tsup --watch src",
     "release": "bumpp --commit --push --tag && pnpm publish",
     "start": "esno src/index.ts"

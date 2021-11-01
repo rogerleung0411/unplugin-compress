@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const Compress = require('../../dist/webpack').default;
+const Compress = require('../../dist/webpack');
 
 const distPath = path.resolve(__dirname, './dist');
 
