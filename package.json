@@ -1,6 +1,6 @@
 {
   "name": "unplugin-compress",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "A common compress plugin for Vite/Webpack/Rollup(etc...) powered by Unplugin",
   "keywords": [
     "unplugin",
@@ -49,8 +49,10 @@
     "*.d.ts"
   ],
   "scripts": {
-    "build": "tsup && esno scripts/postbuild.ts",
     "dev": "tsup --watch src",
+    "build": "tsup",
+    "postbuild": "esno scripts/postbuild.ts",
+    "prerelease": "esno scripts/prerelease.ts",
     "release": "bumpp --commit --push --tag && pnpm publish",
     "postrelease": "esno scripts/postrelease.ts",
     "start": "esno src/index.ts"
