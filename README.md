@@ -56,6 +56,23 @@ export default defineConfig({
 
 ```
 
+### Rollup
+```js
+// in rollup.config.js
+import compress from 'unplugin-compress/rollup';
+
+export default {
+  // ...
+  plugins: [
+    compress({
+      filter: /\.js$/,
+    })
+  ],
+  // ...
+};
+
+```
+
 
 
 ## Inspiration
@@ -66,6 +83,6 @@ export default defineConfig({
 ## Todo
 - [x] Vite support.
 - [x] Webpack(both 4 and 5) support.
-- [ ] Rollup support(WIP).
+- [x] Rollup support.
 
 
