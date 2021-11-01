@@ -1,0 +1,16 @@
+{
+  "name": "unplugin-compress-rollup-example",
+  "private": true,
+  "version": "0.0.0",
+  "license": "MIT",
+  "scripts": {
+    "build": "rollup -c ./rollup.config.js"
+  },
+  "devDependencies": {
+    "rollup": "^2.58.3",
+    "unplugin-compress": "workspace:*"
+  },
+  "dependencies": {
+    "jquery": "^3.6.0"
+  }
+}

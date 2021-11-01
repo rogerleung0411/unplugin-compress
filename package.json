@@ -52,6 +52,7 @@
     "build": "tsup && esno scripts/postbuild.ts",
     "dev": "tsup --watch src",
     "release": "bumpp --commit --push --tag && pnpm publish",
+    "postrelease": "esno scripts/postrelease.ts",
     "start": "esno src/index.ts"
   },
   "dependencies": {
