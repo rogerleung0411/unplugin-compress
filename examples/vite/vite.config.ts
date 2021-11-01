@@ -1,18 +1,20 @@
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
-import UnpluginCompress from '../../dist';
+import compress from 'unplugin-compress/vite';
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     vue(),
-    UnpluginCompress.vite({
+    // use br
+    compress({
       filter: /\.(js|css)$/,
       algorithm: 'brotliCompress',
       extname: '.br',
     }),
-    // UnpluginCompress.vite({
-    //   filter: /\.js$/,
-    // })
+    // use gzip as default
+    compress({
+      filter: /\.js$/,
+    })
   ]
 })

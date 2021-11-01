@@ -7,6 +7,7 @@
   },
   "devDependencies": {
     "fs-extra": "^10.0.0",
+    "unplugin-compress": "workspace:*",
     "webpack-cli": "^4.9.1"
   },
   "dependencies": {

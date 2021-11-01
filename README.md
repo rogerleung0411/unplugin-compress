@@ -5,12 +5,12 @@
 A universal compress plugin for Webpack / Vite / Rollup, powered by [Unplugin](https://github.com/unjs/unplugin), generating compressed file using gzip / brotli / etc...
 
 ## Usage
-> See more usage example in folder `/example`. Feel free to modify and play it on your own!
+> See more usage example in folder `/examples`. Feel free to modify and play it on your own!
 ### Webpack
 ```js
 // webpack.config.js
 
-const Compress = require('../../dist/webpack');
+const compress = require('unplugin-compress/webpack');
 
 module.exports = ({
   mode: 'production',
@@ -19,10 +19,10 @@ module.exports = ({
     path: distPath,
   },
   plugins: [
-    Compress({
+    compress({
       filter: /\.js$/,
     }),
-    Compress({
+    compress({
       filter: /main\.js$/,
       algorithm: 'brotliCompress',
       extname: '.br',
@@ -39,20 +39,20 @@ module.exports = ({
 // in vite.config.ts
 
 import { defineConfig } from 'vite';
-import UnpluginCompress from 'unplugin-compress';
+import compress from 'unplugin-compress/vite';
 
 export default defineConfig({
   plugins: [
-    UnpluginCompress.vite({
+    compress({
       filter: /\.js$/,
     }),
-    UnpluginCompress.vite({
+    compress({
       filter: /\.(js|css)$/,
       algorithm: 'brotliCompress',
       extname: '.br',
     }),
   ]
-})
+});
 
 ```
 
