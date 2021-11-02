@@ -4,7 +4,7 @@
 
 A universal compress plugin for Webpack / Vite / Rollup, powered by [Unplugin](https://github.com/unjs/unplugin), generating compressed file using gzip / brotli / etc...
 
-## Usage
+## Basic Usage
 > See more usage example in folder `/examples`. Feel free to modify and play it on your own!
 ### Webpack
 ```js
@@ -72,7 +72,14 @@ export default {
 };
 
 ```
-
+## Options
+| Key               |             Type                                    |   Default                 | Description
+| ------------------| --------------------------------------------------- | ------------------------- | -----------------------------
+| verbose           | `boolean`                                           | `true`                    | Whether to output the compressed result in the console
+| filter            | `RegExp \| (filename: string) => boolean`           | `() => false`             | Distinguish whether a chunk/asset should be compressed or not. If filter is undefined, nothing will be compressed.|
+| algorithm         | `Algorithm`                                         | `gzip`                    | Possible values are `gzip`, `brotliCompress`, `deflate` and `deflateRaw`
+| extname           | `string`                                            | `.gz`                     | The extension name of output file
+| threshold         | `number`                                            | `0`                       | Only assets bigger than this size are processed (in bytes)
 
 
 ## Inspiration
